@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="../assets/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="CGRD - panel dashboad" />
+    <link rel="stylesheet" href="../src/styles/global.css" />
+    <link rel="apple-touch-icon" href=../assets/logo192.png" />
+    <link rel="manifest" href="./manifest.json" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <title>CGRD admin dashboad</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <header>
+      <app-navbar>
+        <app-logo aria-label="logo"></app-logo>
+      </app-navbar>
+    </header>
+    <app-main>
+      <app-section>
+        <app-form>
+          <app-input placeholder="username" aria-label="username"></app-input>
+          <app-input placeholder="password" aria-label="password"></app-input>
+          <app-button aria-label="login">Login</app-button>
+        </app-form>
+      </app-section>
+    </app-main>
+    <app-footer></app-footer>
+  </body>
+
+  <script type="module" src="../src/components.js"></script>
+</html>

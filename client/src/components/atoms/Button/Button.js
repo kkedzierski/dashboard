@@ -1,10 +1,10 @@
-import { CoreButton } from "../../../Core/atoms/Button/CoreButton.js";
-import CoreHtmlElement from "../../../Core/molecules/CoreHtmlElement.js";
+import { CoreButton } from '../../../core/atoms/Button/CoreButton.js';
+import CoreHtmlElement from '../../../core/molecules/CoreHtmlElement.js';
 
 export class Button extends CoreHtmlElement {
-  static propertyName = "app-button";
+  static propertyName = 'app-button';
   constructor() {
-    const button = CoreButton({ class: "button" });
+    const button = CoreButton({ class: 'button' });
     const style = `
       .button {
         font-size: 1rem;

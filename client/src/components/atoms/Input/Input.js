@@ -1,22 +1,21 @@
-import { CoreInput } from "../../../Core/atoms/Input/CoreInput.js";
+import { CoreInput } from '../../../core/atoms/Input/CoreInput.js';
 
 export class Input extends HTMLElement {
-  static propertyName = "app-input";
+  static propertyName = 'app-input';
   constructor() {
     super();
 
-    if (this.getAttribute("placeholder")) {
-      const placeholder = this.getAttribute("placeholder");
-      this.placeholder =
-        placeholder.charAt(0).toUpperCase() + placeholder.slice(1);
+    if (this.getAttribute('placeholder')) {
+      const placeholder = this.getAttribute('placeholder');
+      this.placeholder = placeholder.charAt(0).toUpperCase() + placeholder.slice(1);
     }
 
     const input = CoreInput({
       placeholder: this.placeholder,
-      class: "input",
+      class: 'input',
     });
-    const shadowRoot = this.attachShadow({ mode: "closed" });
-    const style = document.createElement("style");
+    const shadowRoot = this.attachShadow({ mode: 'closed' });
+    const style = document.createElement('style');
     style.textContent = `
       .input {
         color: black;

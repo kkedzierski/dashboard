@@ -1,8 +1,8 @@
-import {CoreElement} from "../Element/CoreElement.js";
+import { CoreElement } from '../Element/CoreElement.js';
 
 export const CoreButton = (props) => {
   return CoreElement({
-    type: "button",
+    type: 'button',
     props: props,
   });
 };

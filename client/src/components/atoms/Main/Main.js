@@ -1,10 +1,10 @@
-import { CoreMain } from "../../../Core/atoms/Main/CoreMain.js";
-import CoreHtmlElement from "../../../Core/molecules/CoreHtmlElement.js";
+import { CoreMain } from '../../../core/atoms/Main/CoreMain.js';
+import CoreHtmlElement from '../../../core/molecules/CoreHtmlElement.js';
 
 export class Main extends CoreHtmlElement {
-  static propertyName = "app-main";
+  static propertyName = 'app-main';
   constructor() {
-    const section = CoreMain({ class: "main" });
+    const section = CoreMain({ class: 'main' });
     const style = `
       .main {
         margin-top: 1.5rem;

@@ -1,10 +1,10 @@
-import { CoreMain } from "../../../Core/atoms/Main/CoreMain.js";
-import CoreHtmlElement from "../../../Core/molecules/CoreHtmlElement.js";
+import { CoreMain } from '../../../core/atoms/Main/CoreMain.js';
+import CoreHtmlElement from '../../../core/molecules/CoreHtmlElement.js';
 
 export class Footer extends CoreHtmlElement {
-  static propertyName = "app-footer";
+  static propertyName = 'app-footer';
   constructor() {
-    const section = CoreMain({ class: "footer" });
+    const section = CoreMain({ class: 'footer' });
     super({ element: section });
   }
 }

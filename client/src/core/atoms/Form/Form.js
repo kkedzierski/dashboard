@@ -1,8 +1,8 @@
-import {CoreElement} from "../Element/CoreElement.js";
+import { CoreElement } from '../Element/CoreElement.js';
 
 export const CoreForm = (props) => {
   return CoreElement({
-    type: "form",
+    type: 'form',
     props: props,
   });
 };

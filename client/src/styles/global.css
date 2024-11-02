@@ -9,9 +9,13 @@
 html,
 body {
   height: 100%;
-  font-family: "Roboto", sans-serif;
-  background-image: url("/client/assets/images/waves.svg");
+  font-family: 'Roboto', sans-serif;
+  background-image: url('/client/public/assets/images/waves.svg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: -10%;
+
+  @media (max-width: 768px) {
+    background-position: 0;
+  }
 }

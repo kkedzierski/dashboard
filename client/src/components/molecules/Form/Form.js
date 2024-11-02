@@ -1,10 +1,10 @@
-import { CoreForm } from "../../../Core/atoms/Form/Form.js";
-import CoreHtmlElement from "../../../Core/molecules/CoreHtmlElement.js";
+import { CoreForm } from '../../../core/atoms/Form/Form.js';
+import CoreHtmlElement from '../../../core/molecules/CoreHtmlElement.js';
 
 export class Form extends CoreHtmlElement {
-  static propertyName = "app-form";
+  static propertyName = 'app-form';
   constructor() {
-    const form = CoreForm({ class: "form" });
+    const form = CoreForm({ class: 'form' });
     const style = `
       .form {
         display: flex;

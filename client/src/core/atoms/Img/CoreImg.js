@@ -1,8 +1,8 @@
-import {CoreElement} from "../Element/CoreElement.js";
+import { CoreElement } from '../Element/CoreElement.js';
 
 export const CoreImg = (props) => {
   return CoreElement({
-    type: "img",
+    type: 'img',
     props: props,
   });
 };

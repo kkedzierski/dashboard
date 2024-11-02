@@ -1,8 +1,8 @@
-import {CoreElement} from "../Element/CoreElement.js";
+import { CoreElement } from '../Element/CoreElement.js';
 
 export const CoreSection = (props) => {
   return CoreElement({
-    type: "section",
+    type: 'section',
     props: props,
   });
 };

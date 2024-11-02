@@ -1,7 +1,7 @@
 class CoreHtmlElement extends HTMLElement {
   constructor({ element, ...props }) {
     super();
-    const shadowRoot = this.attachShadow({ mode: "closed" });
+    const shadowRoot = this.attachShadow({ mode: 'closed' });
     this.setElement(element);
     this.fetchProps(props, shadowRoot);
 
@@ -9,10 +9,8 @@ class CoreHtmlElement extends HTMLElement {
   }
 
   validateElement(element) {
-    if (!element instanceof HTMLElement) {
-      throw new TypeError(
-        "The `element` parameter must be an instance of HTMLElement."
-      );
+    if ((!element) instanceof HTMLElement) {
+      throw new TypeError('The `element` parameter must be an instance of HTMLElement.');
     }
   }
 
@@ -23,16 +21,16 @@ class CoreHtmlElement extends HTMLElement {
   }
 
   validateProps(props) {
-    if (typeof props !== "object") {
-      throw new TypeError("The `props` parameter must be an object.");
+    if (typeof props !== 'object') {
+      throw new TypeError('The `props` parameter must be an object.');
     }
 
-    if (props.className && typeof props.className !== "string") {
-      throw new TypeError("The `className` in `props` must be a string.");
+    if (props.className && typeof props.className !== 'string') {
+      throw new TypeError('The `className` in `props` must be a string.');
     }
 
-    if (props.style && typeof props.style !== "string") {
-      throw new TypeError("The `style` in `props` must be a string.");
+    if (props.style && typeof props.style !== 'string') {
+      throw new TypeError('The `style` in `props` must be a string.');
     }
   }
 
@@ -40,7 +38,7 @@ class CoreHtmlElement extends HTMLElement {
     this.validateProps(props);
 
     if (props.style) {
-      const style = document.createElement("style");
+      const style = document.createElement('style');
       style.textContent = props.style;
       shadowRoot.appendChild(style);
     }
@@ -53,9 +51,7 @@ class CoreHtmlElement extends HTMLElement {
   }
 
   additionalProps(props) {
-    Object.entries(props).filter(
-      (prop) => !["content", "style"].includes(prop[0])
-    );
+    Object.entries(props).filter((prop) => !['content', 'style'].includes(prop[0]));
   }
 
   fetchAdditionalProps(props) {

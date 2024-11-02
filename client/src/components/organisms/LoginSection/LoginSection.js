@@ -1,10 +1,10 @@
-import { CoreSection } from "../../../Core/atoms/Section/CoreSection.js";
-import CoreHtmlElement from "../../../Core/molecules/CoreHtmlElement.js";
+import { CoreSection } from '../../../core/atoms/Section/CoreSection.js';
+import CoreHtmlElement from '../../../core/molecules/CoreHtmlElement.js';
 
 class LoginSection extends CoreHtmlElement {
-  static propertyName = "login-section";
+  static propertyName = 'login-section';
   constructor() {
-    const section = CoreSection({ class: "loginSection" });
+    const section = CoreSection({ class: 'loginSection' });
     const style = `
       .loginSection {
         display: grid;

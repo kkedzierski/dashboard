@@ -41,3 +41,18 @@ unit-test: phpunit ## Alias for mutation
 phpunit-test: phpunit ## Alias for mutation
 test-unit: phpunit ## Alias for mutation
 tests-unit: phpunit ## Alias for mutation
+
+.PHONY: migrations up
+migrations-up: ## Run migrations
+	docker exec -it -u root $(CONTAINER_NAME) php src/Kernel/Database/Migration/MakeMigrationCommand.php up
+m-u: migrations-up ## Alias for migrations-down
+
+.PHONY: migrations down
+migrations-down: ## Rollback migrations
+	docker exec -it -u root $(CONTAINER_NAME) php src/Kernel/Database/Migration/MakeMigrationCommand.php down
+m-d: migrations-down ## Alias for migrations-down
+
+.PHONY: create test user
+create-test-user: ## Create test user
+	docker exec -it -u root $(CONTAINER_NAME) php src/Account/Ui/CreateUserCommand.php admin@email.com admin test
+c-t-u: create-test-user ## Alias for create-test-user

@@ -35,11 +35,7 @@ docker exec -it "${CONTAINER_NAME}" composer install
 echo "Composer dependencies installed."
 
 echo "Creating database schema..."
-docker exec -it "${CONTAINER_NAME}" bin/console doctrine:database:create --if-not-exists
-docker exec -it "${CONTAINER_NAME}" bin/console doctrine:schema:update --force
-docker exec -it "${CONTAINER_NAME}" bin/console doctrine:schema:validate
+docker exec -it "${CONTAINER_NAME}" php src/Kernel/Database/Migration/MakeMigrationCommand.php up
 
 echo "Creating test database schema..."
-docker exec -it "${CONTAINER_NAME}" bin/console doctrine:schema:update -etest --force
-docker exec -it "${CONTAINER_NAME}" bin/console doctrine:schema:update -etest --force
-docker exec -it "${CONTAINER_NAME}" bin/console doctrine:schema:validate -etest
+docker exec -it "${CONTAINER_NAME}" php src/Account/Ui/CreateUserCommand.php admin@email.com admin test

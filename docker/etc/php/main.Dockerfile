@@ -22,14 +22,14 @@ RUN apt-get -q update && apt-get -qy install \
     && pecl install xdebug \
     && docker-php-ext-enable xdebug
 
-WORKDIR /var/www/html
+WORKDIR /var/www/server
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-COPY . /var/www/html
+COPY ./server /var/www/server
 
 # Copy configuration files
-COPY server/.php-cs-fixer.php /var/www/html/.php-cs-fixer.php
-COPY server/phpstan.neon /var/www/html/phpstan.neon
+COPY server/.php-cs-fixer.php /var/www/server/.php-cs-fixer.php
+COPY server/phpstan.neon /var/www/server/phpstan.neon
 
 RUN ./vendor/bin/grumphp git:init || true

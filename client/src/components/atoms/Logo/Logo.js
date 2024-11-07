@@ -6,7 +6,7 @@ export class Logo extends CoreHtmlElement {
   constructor() {
     const logo = CoreImg({
       class: 'logo',
-      src: '/client/public/assets/images/logo.svg',
+      src: 'assets/images/logo.svg',
       alt: 'Logo CGRD',
     });
 

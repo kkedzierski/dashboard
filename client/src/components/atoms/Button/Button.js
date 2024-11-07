@@ -1,11 +1,22 @@
 import { CoreButton } from '../../../core/atoms/Button/CoreButton.js';
-import CoreHtmlElement from '../../../core/molecules/CoreHtmlElement.js';
 
-export class Button extends CoreHtmlElement {
+export class Button extends HTMLElement {
   static propertyName = 'app-button';
   constructor() {
-    const button = CoreButton({ class: 'button' });
-    const style = `
+    super();
+
+    if (this.getAttribute('type')) {
+      this.type = this.getAttribute('type');
+    }
+
+    if (this.getAttribute('name')) {
+      this.name = this.getAttribute('name');
+    }
+
+    const button = CoreButton({ class: 'button', type: this.type, name: this.name });
+    const shadowRoot = this.attachShadow({ mode: 'closed' });
+    const style = document.createElement('style');
+    style.textContent = `
       .button {
         font-size: 1rem;
         color: white;
@@ -27,7 +38,8 @@ export class Button extends CoreHtmlElement {
       }
     `;
 
-    super({ element: button, style });
+    shadowRoot.appendChild(style);
+    shadowRoot.appendChild(button);
   }
 }
 

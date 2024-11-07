@@ -10,11 +10,21 @@ export class Input extends HTMLElement {
       this.placeholder = placeholder.charAt(0).toUpperCase() + placeholder.slice(1);
     }
 
+    if (this.getAttribute('name')) {
+      this.name = this.getAttribute('name');
+    }
+
+    if (this.getAttribute('type')) {
+      this.type = this.getAttribute('type');
+    }
+
     const input = CoreInput({
       placeholder: this.placeholder,
+      name: this.name,
+      type: this.type,
       class: 'input',
     });
-    const shadowRoot = this.attachShadow({ mode: 'closed' });
+    const shadowRoot = this.attachShadow({ mode: 'open' });
     const style = document.createElement('style');
     style.textContent = `
       .input {

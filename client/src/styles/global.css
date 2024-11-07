@@ -10,7 +10,7 @@ html,
 body {
   height: 100%;
   font-family: 'Roboto', sans-serif;
-  background-image: url('/client/public/assets/images/waves.svg');
+  background-image: url('/assets/images/waves.svg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: -10%;

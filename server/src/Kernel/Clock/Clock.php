@@ -8,4 +8,9 @@ class Clock implements ClockInterface
     {
         return new \DateTimeImmutable('now');
     }
+
+    public function dateTime(string $datetime): \DateTimeImmutable
+    {
+        return $this->now()->modify($datetime);
+    }
 }

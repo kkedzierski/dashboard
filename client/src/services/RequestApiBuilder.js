@@ -3,14 +3,17 @@ import { config } from '../config.js';
 class RequestApiBuilder {
   constructor() {
     this.mainUrl = config.API_URL;
-    this.resource = '';
+    this.method = '';
     this.id = '';
     this.params = {};
     this.body = null;
+    this.headers = {
+      'Content-Type': 'application/json',
+    };
   }
 
-  setResource(resource) {
-    this.resource = resource;
+  setMethod(method) {
+    this.method = method;
     return this;
   }
 
@@ -19,8 +22,18 @@ class RequestApiBuilder {
     return this;
   }
 
+  addHeader(key, value) {
+    this.headers[key] = value;
+    return this;
+  }
+
+  setBearerToken(token) {
+    this.addHeader('Authorization', `Bearer ${token}`);
+    return this;
+  }
+
   buildUrl() {
-    let url = `${this.mainUrl}/${this.resource}`;
+    let url = `${this.mainUrl}/${this.method}`;
 
     return url;
   }
@@ -29,9 +42,7 @@ class RequestApiBuilder {
     const url = this.buildUrl();
     const options = {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: this.headers,
       body: this.body,
     };
 
@@ -49,9 +60,7 @@ class RequestApiBuilder {
     const url = this.buildUrl();
     const options = {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: this.headers,
     };
 
     try {

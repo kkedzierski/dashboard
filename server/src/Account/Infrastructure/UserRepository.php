@@ -25,6 +25,16 @@ class UserRepository implements UserRepositoryInterface
             ->getResult();
     }
 
+    public function getByUsername(string $username): array
+    {
+        return $this->queryBuilder->createQueryBuilder()
+            ->select()
+            ->from('user')
+            ->where('username = :username')
+            ->setParameter('username', $username)
+            ->getResult();
+    }
+
     public function save(User $user): void
     {
         $this->queryBuilder->createQueryBuilder()

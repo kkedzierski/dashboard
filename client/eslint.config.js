@@ -16,6 +16,6 @@ export default [
       indent: ['error', 2],
       'no-unused-vars': ['warn'],
     },
-    ignores: ['node_modules', 'dist', 'eslint.config.js', 'src/components.js'],
+    ignores: ['node_modules', 'dist', 'eslint.config.js', 'src/main.js'],
   },
 ];

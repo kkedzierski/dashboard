@@ -78,10 +78,15 @@ export class Form extends HTMLElement {
 
     loginUser(username, password)
       .then((response) => {
+        console.log(response);
         console.log('Login successful:', response);
+
+        localStorage.setItem('jwtToken', response.token);
+        window.location.href = '/dashboard';
       })
       .catch((error) => {
         console.error('Login failed:', error);
+        document.querySelector('app-toast').setAttribute('message', 'Wrong Login Data!');
       });
   };
 }

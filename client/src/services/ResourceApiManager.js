@@ -6,5 +6,10 @@ export const loginUser = (username, password) => {
     password: password,
   };
 
-  return new RequestApiBuilder().setResource('login').setBody(body).post();
+  return new RequestApiBuilder().setMethod('login').setBody(body).post();
+};
+
+export const checkAuth = () => {
+  const token = localStorage.getItem('jwtToken');
+  return new RequestApiBuilder().setMethod('auth').setBearerToken(token).get();
 };

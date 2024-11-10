@@ -2,8 +2,12 @@ import { CoreInput } from '../../../core/atoms/Input/CoreInput.js';
 
 export class Input extends HTMLElement {
   static propertyName = 'app-input';
-  constructor() {
+  constructor(placeholder = '', name = '', type = 'text') {
     super();
+
+    this.placeholder = placeholder;
+    this.name = name;
+    this.type = type;
 
     if (this.getAttribute('placeholder')) {
       const placeholder = this.getAttribute('placeholder');
@@ -34,7 +38,7 @@ export class Input extends HTMLElement {
         border-radius: 5px;
         width: 680px;
         cursor: pointer;
-        background-color: #f8f9fa;
+        background-color: rgba(248, 249, 250, 0.8);
       }
 
       .input:focus {

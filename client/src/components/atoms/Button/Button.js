@@ -2,9 +2,11 @@ import { CoreButton } from '../../../core/atoms/Button/CoreButton.js';
 
 export class Button extends HTMLElement {
   static propertyName = 'app-button';
-  constructor() {
+  constructor(type = 'button', name = 'button') {
     super();
 
+    this.type = type;
+    this.name = name;
     if (this.getAttribute('type')) {
       this.type = this.getAttribute('type');
     }

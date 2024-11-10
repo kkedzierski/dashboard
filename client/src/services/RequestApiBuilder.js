@@ -38,6 +38,40 @@ class RequestApiBuilder {
     return url;
   }
 
+  async patch() {
+    const url = this.buildUrl();
+    const options = {
+      method: 'PATCH',
+      headers: this.headers,
+      body: this.body,
+    };
+
+    try {
+      const response = await fetch(url, options);
+      return this.handleResponse(response);
+    } catch (error) {
+      console.error('Error during PATCH request:', error);
+      throw error;
+    }
+  }
+
+  async delete() {
+    const url = this.buildUrl();
+    const options = {
+      method: 'DELETE',
+      headers: this.headers,
+      body: this.body,
+    };
+
+    try {
+      const response = await fetch(url, options);
+      return this.handleResponse(response);
+    } catch (error) {
+      console.error('Error during DELETE request:', error);
+      throw error;
+    }
+  }
+
   async post() {
     const url = this.buildUrl();
     const options = {

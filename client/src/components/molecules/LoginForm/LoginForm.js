@@ -1,23 +1,17 @@
+import { config } from '../../../config.js';
 import { CoreForm } from '../../../core/atoms/Form/Form.js';
 import { loginUser } from '../../../services/ResourceApiManager.js';
+import { showToast } from '../../atoms/Toast/ToastManager.js';
 
-export class Form extends HTMLElement {
-  static propertyName = 'app-form';
+export class LoginForm extends HTMLElement {
+  static propertyName = 'app-login-form';
+
   constructor() {
     super();
 
     const shadowRoot = this.attachShadow({ mode: 'open' });
-
-    this.action = this.getAttribute('action') || '';
-    this.method = this.getAttribute('method') || 'GET';
-
-    if (this.getAttribute('action')) {
-      this.action = this.getAttribute('action');
-    }
-
-    if (this.getAttribute('method')) {
-      this.method = this.getAttribute('method');
-    }
+    this.action = `${config.API_URL}/login`;
+    this.method = 'POST';
 
     const form = CoreForm({
       class: 'form',
@@ -30,7 +24,6 @@ export class Form extends HTMLElement {
         event.preventDefault();
 
         const userData = this.prepareUserData(shadowRoot);
-
         this.loginUser(userData);
       }
     });
@@ -73,22 +66,20 @@ export class Form extends HTMLElement {
     const { username, password } = userData;
 
     if (!username || !password) {
+      showToast('Please enter username and password!', 'error');
       return;
     }
 
     loginUser(username, password)
       .then((response) => {
-        console.log(response);
-        console.log('Login successful:', response);
-
         localStorage.setItem('jwtToken', response.token);
         window.location.href = '/dashboard';
       })
       .catch((error) => {
         console.error('Login failed:', error);
-        document.querySelector('app-toast').setAttribute('message', 'Wrong Login Data!');
+        showToast('Wrong Login Data!', 'error');
       });
   };
 }
 
-customElements.define(Form.propertyName, Form);
+customElements.define(LoginForm.propertyName, LoginForm);

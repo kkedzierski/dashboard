@@ -2,10 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="../../public/assets/favicon.ico" />
+    <link rel="icon" href="assets/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="CGRD - panel dashboad" />
-    <link rel="stylesheet" href="../styles/global.css" />
+    <link rel="stylesheet" href="../src/styles/global.css" />
     <link rel="apple-touch-icon" href="../../public/assets/logo192.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -24,7 +24,11 @@
       </app-navbar>
     </header>
     <app-main>
-      <app-section> section </app-section>
+      <app-section>
+        <app-news-list></app-news-list>
+        <app-news-post-action-form></app-news-post-action-form>
+        <app-logout-button aria-label="logout" name="logout">Logout</app-logout-button>
+      </app-section>
     </app-main>
     <app-footer></app-footer>
   </body>

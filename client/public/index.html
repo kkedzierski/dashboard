@@ -28,7 +28,7 @@
     <app-main>
       <app-toast></app-toast>
       <app-section>
-        <app-form action="http://localhost:26500/api/v1/login" method="POST">
+        <app-login-form>
           <app-input
             placeholder="username"
             aria-label="username"
@@ -42,7 +42,7 @@
             type="password"
           ></app-input>
           <app-button aria-label="login" type="submit" name="login">Login</app-button>
-        </app-form>
+        </app-login-form>
       </app-section>
     </app-main>
     <app-footer></app-footer>

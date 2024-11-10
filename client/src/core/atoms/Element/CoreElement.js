@@ -1,7 +1,15 @@
 export const CoreElement = ({ type, props = {} }) => {
   validateArguments({ type, props });
   const element = document.createElement(type);
-  element.innerHTML = '<slot></slot>';
+
+  if (props.withSlot !== false) {
+    element.innerHTML = '<slot></slot>';
+  }
+
+  if (props.textContent) {
+    element.textContent = props.textContent;
+    delete props.textContent;
+  }
 
   Object.entries(props).forEach((prop) => {
     element.setAttribute(prop[0], prop[1]);

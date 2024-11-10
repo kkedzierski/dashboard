@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Kernel\Database;
 
+use App\Kernel\JsonResponse\JsonResponse;
+
 class QueryBuilder
 {
     public function __construct(
@@ -28,6 +30,7 @@ class QueryBuilder
      */
     public function select(array $columns = []): self
     {
+        $this->resetQuery();
         if (empty($columns)) {
             $columns = ['*'];
         }
@@ -39,7 +42,30 @@ class QueryBuilder
 
     public function insert(string $table, array $columns, array $values): self
     {
+        $this->resetQuery();
         $this->addQueryPart(sprintf('INSERT INTO %s (%s) VALUES (%s)', $table, implode(', ', $columns), implode(', ', $values)));
+
+        return $this;
+    }
+
+    public function update(string $table, array $columns, array $values): self
+    {
+        $this->resetQuery();
+        $setParts = [];
+
+        foreach ($columns as $index => $column) {
+            $setParts[] = sprintf('%s = %s', $column, $values[$index]);
+        }
+
+        $this->addQueryPart(sprintf('UPDATE %s SET %s', $table, implode(', ', $setParts)));
+
+        return $this;
+    }
+
+    public function delete(string $table): self
+    {
+        $this->resetQuery();
+        $this->addQueryPart(sprintf('DELETE FROM %s', $table));
 
         return $this;
     }
@@ -106,6 +132,7 @@ class QueryBuilder
     private function prepareStatement(): \PDOStatement
     {
         $query = $this->getQuery();
+
         $statement = $this->pdoProvider->getPdo()->prepare($query);
 
         foreach ($this->whereParams as $param) {
@@ -120,7 +147,7 @@ class QueryBuilder
         $statement = $this->prepareStatement();
         $statement->execute();
 
-        return $statement->fetchAll();
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     private function getPdoType(string $type): int

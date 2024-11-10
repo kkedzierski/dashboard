@@ -21,12 +21,10 @@ class Serializer implements SerializerInterface
                 if (array_key_exists($paramName, $data)) {
                     $value = $data[$paramName];
 
-                    // Dekodowanie JSON dla tablic
                     if (is_string($value) && $this->isJson($value)) {
                         $value = json_decode($value, true);
                     }
 
-                    // Konwersja do UUIDInterface, jeśli parametr wymaga UUID
                     if (is_string($value) && Uuid::isValid($value)) {
                         JsonResponse::send([$value]);
                         $value = Uuid::fromString($value);
@@ -52,7 +50,6 @@ class Serializer implements SerializerInterface
                     $value = json_decode($value, true);
                 }
 
-                // Konwersja string do UUIDInterface dla właściwości obiektu
                 if ($property->getType() && $property->getType()->getName() === UuidInterface::class && is_string($value)) {
                     $value = Uuid::fromString($value);
                 }

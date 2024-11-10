@@ -29,7 +29,7 @@ readonly class PdoProvider implements PdoProviderInterface
             $this->logger
                 ->logException('Could not connect to the database.', $e);
 
-            throw new \RuntimeException('Could not connect to the database');
+            throw new \RuntimeException('Could not connect to the database: ' . $e->getMessage());
         }
     }
 }

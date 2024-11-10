@@ -8,8 +8,13 @@ use App\Account\Application\Token\TokenMangerInterface;
 use App\Account\Domain\UserFactory;
 use App\Account\Domain\UserRepositoryInterface;
 use App\Account\Infrastructure\UserRepository;
-use App\Account\Ui\AuthController;
 use App\Account\Ui\LoginController;
+use App\Dashboard\Application\NewsPostService;
+use App\Dashboard\Domain\NewsPostFactory;
+use App\Dashboard\Domain\NewsPostRepositoryInterface;
+use App\Dashboard\Infrastructure\NewsPostRepository;
+use App\Dashboard\Ui\NewsPostController;
+use App\Kernel\Authorization\AuthManager;
 use App\Kernel\Clock\Clock;
 use App\Kernel\Clock\ClockInterface;
 use App\Kernel\Database\Migration\MigrationManager;
@@ -102,13 +107,27 @@ readonly class ContainerServicesManager
             $this->container->get(SerializerInterface::class),
             $this->container->get(TokenMangerInterface::class),
         ));
-        $this->container->set(AuthController::class, fn() => new AuthController(
+        $this->container->set(AuthManager::class, fn() => new AuthManager(
             $this->container->get(TokenMangerInterface::class),
         ));
     }
 
     private function registerNewsPostDomainServices(): void
     {
-
+        $this->container->set(NewsPostRepositoryInterface::class, fn() => new NewsPostRepository(
+            $this->container->get(QueryBuilder::class),
+        ));
+        $this->container->set(NewsPostFactory::class, fn() => new NewsPostFactory());
+        $this->container->set(NewsPostService::class, fn() => new NewsPostService(
+            $this->container->get(NewsPostRepositoryInterface::class),
+            $this->container->get(NewsPostFactory::class),
+            $this->container->get(LoggerInterface::class),
+            $this->container->get(SerializerInterface::class),
+        ));
+        $this->container->set(NewsPostController::class, fn() => new NewsPostController(
+            $this->container->get(AuthManager::class),
+            $this->container->get(NewsPostService::class),
+            $this->container->get(NewsPostRepositoryInterface::class),
+        ));
     }
 }

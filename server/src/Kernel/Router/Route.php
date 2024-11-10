@@ -11,5 +11,4 @@ class Route
         public string $controllerMethod
     ) {
     }
-
 }

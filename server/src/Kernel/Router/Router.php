@@ -12,6 +12,8 @@ class Router
     public const METHOD_PUT = 'PUT';
     public const METHOD_PATCH = 'PATCH';
 
+    public const METHOD_DELETE = 'DELETE';
+
     public function __construct(
         private readonly LoggerInterface $logger,
         private readonly ContainerInterface $container,
@@ -42,7 +44,7 @@ class Router
         $path = $_SERVER['REQUEST_URI'];
 
         $body = [];
-        if (in_array($method, [self::METHOD_PUT, self::METHOD_PATCH, self::METHOD_POST], true)) {
+        if (in_array($method, [self::METHOD_PUT, self::METHOD_PATCH, self::METHOD_POST, self::METHOD_DELETE], true)) {
             $body = $this->provideBody();
         }
 
@@ -53,17 +55,14 @@ class Router
 
                     $reflectionMethod = new \ReflectionMethod($controller, $route->controllerMethod);
                     $parameters = $reflectionMethod->getParameters();
-                    // Tworzenie argumentów do wywołania metody kontrolera
                     $args = [];
                     foreach ($parameters as $param) {
                         $paramType = $param->getType();
                         $paramClassName = $paramType instanceof \ReflectionNamedType ? $paramType->getName() : null;
 
                         if ($paramClassName && class_exists($paramClassName)) {
-                            // Tworzenie DTO, jeśli typ parametru istnieje jako klasa
                             $args[] = $this->dtoFactory->create($paramClassName, $body);
                         } else {
-                            // Możesz zdecydować, co zrobić, jeśli parametr nie jest DTO, np. błąd lub null
                             $args[] = null;
                         }
                     }
@@ -81,11 +80,6 @@ class Router
             $this->logger->logException('Cannot handle request', $exception, ['path' => $path, 'method' => $method]);
             JsonResponse::send(['error' => 'Internal server error'], 500);
         }
-    }
-
-    private function provideDto(): object
-    {
-        return $this->dtoFactory->create($dto, $data);
     }
 
     private function provideBody(): array

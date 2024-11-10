@@ -7,7 +7,6 @@ import { Logo } from './components/atoms/Logo/Logo.js';
 import { Main } from './components/atoms/Main/Main.js';
 import { Footer } from './components/atoms/Footer/Footer.js';
 import { Toast } from './components/atoms/Toast/Toast.js';
-import LoginSection from './components/organisms/LoginSection/LoginSection.js';
 import { checkAuth } from './services/ResourceApiManager.js';
 import { LogoutButton } from './components/molecules/LogoutButton/LogoutButton.js';
 import { NewsList } from './components/molecules/NewsList/NewsList.js';

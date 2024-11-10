@@ -1,10 +1,10 @@
 import { CoreInput } from '../../../core/atoms/Input/CoreInput.js';
+import { CoreStyle } from '../../../core/atoms/Style/CoreStyle.js';
 
 export class Input extends HTMLElement {
   static propertyName = 'app-input';
   constructor(placeholder = '', name = '', type = 'text') {
     super();
-
     this.placeholder = placeholder;
     this.name = name;
     this.type = type;
@@ -22,36 +22,41 @@ export class Input extends HTMLElement {
       this.type = this.getAttribute('type');
     }
 
+    const shadowRoot = this.attachShadow({ mode: 'open' });
+    this.createComponent(shadowRoot);
+  }
+
+  createComponent(shadowRoot) {
     const input = CoreInput({
       placeholder: this.placeholder,
       name: this.name,
       type: this.type,
       class: 'input',
     });
-    const shadowRoot = this.attachShadow({ mode: 'open' });
-    const style = document.createElement('style');
-    style.textContent = `
-      .input {
-        color: black;
-        padding: 0.8rem;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        width: 680px;
-        cursor: pointer;
-        background-color: rgba(248, 249, 250, 0.8);
-      }
 
-      .input:focus {
-        outline: none;
-        background-color: #fff;
-      } 
-
-     @media (max-width: 768px) {
+    const style = CoreStyle({
+      textContent: `
         .input {
-          width: 300px;
+          color: black;
+          padding: 0.8rem;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          width: 680px;
+          cursor: pointer;
+          background-color: rgba(248, 249, 250, 0.8);
         }
-      }
-    `;
+        .input:focus {
+          outline: none;
+          background-color: #fff;
+        } 
+
+        @media (max-width: 768px) {
+          .input {
+            width: 300px;
+          }
+        }
+      `,
+    });
 
     shadowRoot.appendChild(style);
     shadowRoot.appendChild(input);

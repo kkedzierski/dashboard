@@ -1,5 +1,6 @@
 import { config } from '../../../config.js';
 import { CoreForm } from '../../../core/atoms/Form/Form.js';
+import { CoreStyle } from '../../../core/atoms/Style/CoreStyle.js';
 import { loginUser } from '../../../services/ResourceApiManager.js';
 import { showToast } from '../../atoms/Toast/ToastManager.js';
 
@@ -12,14 +13,9 @@ export class LoginForm extends HTMLElement {
     const shadowRoot = this.attachShadow({ mode: 'open' });
     this.action = `${config.API_URL}/login`;
     this.method = 'POST';
+    this.createComponent(shadowRoot);
 
-    const form = CoreForm({
-      class: 'form',
-      action: this.action,
-      method: this.method,
-    });
-
-    form.addEventListener('click', (event) => {
+    this.form.addEventListener('click', (event) => {
       if (event.target.name === 'login') {
         event.preventDefault();
 
@@ -27,24 +23,33 @@ export class LoginForm extends HTMLElement {
         this.loginUser(userData);
       }
     });
+  }
+
+  createComponent(shadowRoot) {
+    this.form = CoreForm({
+      class: 'form',
+      action: this.action,
+      method: this.method,
+    });
 
     while (this.children.length > 0) {
-      form.appendChild(this.children[0]);
+      this.form.appendChild(this.children[0]);
     }
 
-    const style = document.createElement('style');
-    style.textContent = `
-      .form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        gap: 1rem;
-      }
-      `;
+    const style = CoreStyle({
+      textContent: `
+        .form {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+          gap: 1rem;
+        }
+      `,
+    });
 
     shadowRoot.appendChild(style);
-    shadowRoot.appendChild(form);
+    shadowRoot.appendChild(this.form);
   }
 
   prepareUserData = (shadowRoot) => {

@@ -3,7 +3,7 @@
 ## Full documentation:
 1. Run:
 ```sh
-bash documentation/deploy_docs.sh -l true
+bash documentation/deploy_docs.sh
 ```
 2. And go to: http://127.0.0.1:8000/cgrd-dashboard/
 

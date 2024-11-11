@@ -1,0 +1,18 @@
+site_name: cgrd-dashboard
+docs_dir: ./docs
+site_dir: ./site
+site_url: https://kkedzierski.github.io/cgrd-dashboard/
+nav:
+  - Home: index.md
+  - Technical guide:
+      - Installation: technicalGuide/installation.md
+      - Api documentation: technicalGuide/api.md
+      - Server code documentation: technicalGuide/serverCode.md
+      - Client code documentation: technicalGuide/clientCode.md
+      - This documentation: technicalGuide/thisDocumentation.md
+      - Tests: technicalGuide/tests.md
+  - Authors: authors.md
+  - Future improvements: futureImprovement.md
+plugins:
+  - search:
+      lang: en

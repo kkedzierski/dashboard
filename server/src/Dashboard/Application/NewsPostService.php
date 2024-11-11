@@ -8,7 +8,6 @@ use App\Dashboard\Domain\NewsPost;
 use App\Dashboard\Domain\NewsPostFactory;
 use App\Dashboard\Domain\NewsPostRepositoryInterface;
 use App\Dashboard\Ui\NewsPostDto;
-use App\Kernel\JsonResponse\JsonResponse;
 use App\Kernel\Logger\LoggerInterface;
 use App\Kernel\Serializer\SerializerInterface;
 

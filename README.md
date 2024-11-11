@@ -1,6 +1,11 @@
 # CGRD Dashboard
 
-## Full documentaion avaliable [here](https://kkedzierski.github.io/cgrd-dashboard/)
+## Full documentation:
+1. Run:
+```sh
+bash documentation/deploy_docs.sh -l true
+```
+2. And go to: http://127.0.0.1:8000/cgrd-dashboard/
 
 ## Installation quick guide
 

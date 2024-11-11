@@ -49,3 +49,5 @@ cd cgrd-dashboard
 ```sh
 bash docker/run-dashboard.sh
 ```
+
+3. Application will be available at http://localhost:26500

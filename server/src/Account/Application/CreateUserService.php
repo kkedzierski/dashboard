@@ -24,7 +24,7 @@ class CreateUserService
     public function createUser(
         CreateUserDto $createUserDto
     ): void {
-        if (empty($this->userRepository->getByEmail($createUserDto->email))) {
+        if (!empty($this->userRepository->getByEmail($createUserDto->email))) {
             throw new UserExistException();
         }
 

@@ -1,6 +1,6 @@
-# Documentation for CGRD dashboard
+# Documentation for Panel dashboard
 
-Welcome to the documentation page for the cgrd-dashboard portal!
+Welcome to the documentation page for the panel dashboard portal!
 
 ## Used solutions:
 #### Docker:

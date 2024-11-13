@@ -1,6 +1,6 @@
 {
-  "name": "CGRD admin dashboard",
-  "short_name": "CGRD",
+  "name": "Panel dashboard",
+  "short_name": "dashboard",
   "icons": [
     {
       "src": "/logo192.png",

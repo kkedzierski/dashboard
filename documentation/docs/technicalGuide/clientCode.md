@@ -40,7 +40,7 @@ export class Logo extends CoreHtmlElement {
     const logo = CoreImg({
       class: 'logo',
       src: 'assets/images/logo.svg',
-      alt: 'Logo CGRD',
+      alt: 'Logo',
     });
 
     super({ element: logo });

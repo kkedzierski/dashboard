@@ -26,7 +26,7 @@ class TokenManager implements TokenMangerInterface
         );
 
         $this->config->setValidationConstraints(
-            new IssuedBy('cgrd-dashboard')
+            new IssuedBy('dashboard')
         );
     }
 
@@ -34,7 +34,7 @@ class TokenManager implements TokenMangerInterface
     {
         $now = $this->clock->now();
         $builder = $this->config->builder()
-            ->issuedBy('cgrd-dashboard')
+            ->issuedBy('dashboard')
             ->issuedAt($now)
             ->expiresAt($now->modify($_ENV['JWT_EXPIRATION']));
 

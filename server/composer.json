@@ -1,6 +1,6 @@
 {
-  "name": "cgrd-dashboard/server",
-  "description": "Cgrd Dashboard",
+  "name": "dashboard/server",
+  "description": "Dashboard",
   "type": "project",
   "license": "proprietary",
   "minimum-stability": "stable",
